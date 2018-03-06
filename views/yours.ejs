@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    >
+
+    <title>input</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">IRAQI WOMEN</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item ">
+                <a class="nav-link " href="/first">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/2nd">Developing</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/3rd">Studies and progressing</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/crs">Education</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<div class="container-fluid" id="root">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <div class="list-group mt-5">
+                <li class="list-group-item list-group-item-secondary">Iraqi woman's success stories in women's rights
+                    history
+                </li>
+            </div>
+            <a href="/2nd" class="list-group-item list-group-item-action list-group-item-primary ">Iraqi Al-Amal
+                Association</a>
+            <a href="/zz" class="list-group-item list-group-item-action list-group-item-primary ">Zainab Salbi</a>
+            <a href="/yours" class="list-group-item list-group-item-action list-group-item-primary active">Your contribution</a>
+        </div>
+        <div class="col-md-6">
+            <h1 class="z mt-5">Your story</h1>
+            <br>
+            <p>The main reason for creating this page was to help iraqi women as much as we can and with all means,
+                their human rights, their social lives and their education.
+                As we get a wonderful support from many Associations, we are truly hopeful that can increase the Iraqi
+                women chances by having new ideas and contributes from people for women rights improvement by their
+                suggestions for having a better life for the woman , and so , a better society..</p>
+            <br>
+            <p> please share us your suggestion.</p>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary mt-1" data-toggle="modal" data-target="#inputModal">
+                Suggest Here..
+            </button>
+            <br>
+            <p> To see others contributes pleas visit </p>
+
+            <!-- Modal -->
+            <div class="modal fade" id="inputModal" tabindex="-1" role="dialog"
+                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Suggestion</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group" style="margin-top: 50px">
+                                <label for="exampleInputEmail1">Your Name</label>
+                                <input v-model="women.Name" type="text" class="form-control" id="exampleInputEmail1"
+                                       aria-describedby="emailHelp">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Problem </label>
+                                    <input v-model="women.Problem" type="text" class="form-control"
+                                           id="exampleInputEmail1"
+                                           aria-describedby="emailHelp">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Solution</label>
+                                    <input v-model="women.Solution" type="text" class="form-control"
+                                           id="exampleInputEmail1"
+                                           aria-describedby="emailHelp">
+                                    <div class="form-group"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button @click="addWomen()" type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+</body>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        crossorigin="anonymous"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+<script>
+    var app = new Vue({
+        el: "#root",
+        data: {
+            women: {
+                Name: "",
+                Problem: "",
+                Solution: ""
+            }
+        },
+        methods:
+            {
+                addWomen: function () {
+                    axios.post('/api/women', {women: this.women}).then(function (response) {
+                        alert(response.data.message)
+                    })
+
+                }
+            }
+    })
+</script>
+
+</html>

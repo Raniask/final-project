@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    >
+
+    <title>input</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">IRAQI WOMEN</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item ">
+                <a class="nav-link " href="/first">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/2nd">Developing</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/3rd">Studies and progressing</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/crs">Education</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<div class="container-fluid" id="root">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <div class="list-group mt-5">
+                <a href="/2nd" class="list-group-item list-group-item-secondary">Iraqi woman's success stories in
+                    women's rights history</a>
+            </div>
+            <a href="/2nd" class="list-group-item list-group-item-action list-group-item-primary active">Iraqi Al-Amal
+                Association</a>
+            <a href="/zz" class="list-group-item list-group-item-action list-group-item-primary">Zainab Salbi</a>
+            <a href="/yours" class="list-group-item list-group-item-action list-group-item-primary">Your contribution</a>
+        </div>
+        <div class="col-md-6">
+            <img src="https://scontent.fbgw7-1.fna.fbcdn.net/v/t1.0-9/27751607_2135387523144673_8769445253953225539_n.jpg?_nc_eui2=v1%3AAeGSmKEchp3AfpQRk4YuoovZ3B8AAAXsKlbtTlhttLHWTh8vl9oDlBwk7JWWMEZnJSJSD2F_LYXWbcwgWoCrrEGmmsSt2r9T_f9tEiUJxCP38Q&oh=6e3a087f2b1ec66b85af00649790ce4a&oe=5B0F7E0F"
+                 alt="" width="600" height="350" class=" x mt-5">
+            <br>
+            <p class="y mt-3" style="word-break:break-all">Iraqi Al-Amal Association is a non-political, non-sectarian
+                and non profitassociation of volunteers actively engaged in projects for the benefit and well being of
+                the Iraqi population regardless of race, gender and political or religious affiliation.
+
+                Al-Amal was established in 1992 in the midst of the horrific conditions prevailing after the Second Gulf
+                War with the aim of providing aid to relieve the suffering of the Iraqi people and to establish a just
+                and democratic society for Arabs, Kurds and other nationalities in Iraq.
+
+                Al-Amal started its work in Iraqi Kurdistan where many programmes and projects were executed.
+
+
+                In May 2003, the head office of Al-Amal was opened in Baghdad. Its activities and services are now
+                provided throughout Iraq with the aim of rehabilitating the people and influencing the social
+                consciousness towards the creation of a modern civil society. The programmes are aimed at combating all
+                forms of violence and discrimination, the promotion of the culture of human rights, human security,
+                gender and social peace, the carrying-out of income-generating projects as well as providing
+                psychosocial and legal assistance and training courses for a variety of sectors of women, children and
+                youth so that they can participate efficiently in public life. Al-Amal also advocates law reform, along
+                with the rehabilitation of workers in police and judicial fields, with the aim of securing the supremacy
+                of law and justice in society.
+
+                All projects are based on needs assessment studies and, although initially financed by funding
+                organisations, the projects are continued on self-financing basis wherever possible.
+                Al-Amal has established a multi-layer control and monitoring procedure in order to maintain a proper
+                accountability and transparency at all levels of management.
+
+                Al-Amal is registered at the Office of Assisting Non-Government Organisations under registration No.
+                1Z687. It is also registered at the Ministry of Interior, the Regional Government of Kurdistan in Arbil
+                (Registration No. 1151 on 17/7/1994). </p>
+        </div>
+    </div>
+</div>
+
+</div>
+</body>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        crossorigin="anonymous"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+<script>
+    var app = new Vue({
+        el: "#root",
+        data: {
+            women: {
+                Name: "",
+                Problem: "",
+                Solution: ""
+            }
+        },
+        methods:
+            {
+                addWomen: function () {
+                    axios.post('/api/women', {women: this.women}).then(function (response) {
+                        alert(response.data.message)
+                    })
+
+                }
+            }
+    })
+</script>
+
+</html>

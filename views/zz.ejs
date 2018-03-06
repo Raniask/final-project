@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    >
+
+    <title>input</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">IRAQI WOMEN</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item ">
+                <a class="nav-link " href="/first">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/2nd">Developing</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/3rd">Studies and progressing</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/crs">Education</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<div class="container-fluid" id="root">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <div class="list-group mt-5">
+                <li class="list-group-item list-group-item-secondary">Iraqi woman's success stories in women's rights
+                    history
+                </li>
+            </div>
+            <a href="/2nd" class="list-group-item list-group-item-action list-group-item-primary ">Iraqi Al-Amal
+                Association</a>
+            <a href="/2nd/znb" class="list-group-item list-group-item-action list-group-item-primary active">Zainab
+                Salbi</a>
+            <a href="/yours" class="list-group-item list-group-item-action list-group-item-primary">Your contribution</a>
+        </div>
+        <div class="col-md-6">
+            <img src="http://static.makers.com/Zainab%20Salbi%20Leadership%20Lesson.jpg" alt="" width="600" height="350"
+                 class=" x mt-5">
+            <br>
+            <p class="y mt-3" style="word-break:break-all">
+                Zainab Salbi is a humanitarian, author, and media personality. In 2015, Salbi launched The Nida’a Show,
+                a talk show dedicated to addressing and inspiring women in the Arab world www.nidaashow.com. The show
+                started with the historic first interview of Oprah Winfrey in the Arab world, and features women and men
+                from all walks of life in addition to global and Arab celebrities. On November 15, 2016, Salbi is
+                launching The Zainab Salbi Project, an original global series in collaboration with Huffington Post US
+                and AOL. The Zainab Salbi Project fearlessly travels the world shedding light on global issues through
+                the incredible personal stories of people who are struggling, surviving and thriving in a sea of
+                conflict. Salbi is the editor at large at Women in the World in association with The New York Times. She
+                is also the author of several books including the national bestseller ‘Between Two Worlds: Escape from
+                Tyranny: Growing Up in the Shadow of Saddam’. At the age of 23, she founded Women for Women
+                International, a grassroots humanitarian and development organization dedicated to serving women
+                survivors of wars rebuild their lives. Under her leadership as the organization’s CEO (1993-2011), the
+                organization grew from helping 30 women upon its inception to more than 400,000 women in 8 conflict
+                areas leading to a distribution of more than $100 million dollars in aid and loans, and has impacted
+                more than 1.7 million family members. Salbi is consistently identified as one of the most influential
+                women in the world from Harper’s Bazaar (2010), Newsweek (2011), Fortune Magazine (2014), The Guardian
+                (2015), and Fast Company (2015). Most recently, Salbi was featured on Fast Company’s list of 100 Most
+                Creative People in Business for being a voice of change in the Middle East (2016), Ranked #2 on Arabian
+                Business’ list of The World’s 100 Most Powerful Arab Women (2016), and named one of '25 Women Changing
+                The World' by People Magazine (2016).
+            </p>
+
+        </div>
+    </div>
+</div>
+</body>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        crossorigin="anonymous"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+<script>
+    var app = new Vue({
+        el: "#root",
+        data: {
+            women: {
+                Name: "",
+                Problem: "",
+                Solution: ""
+            }
+        },
+        methods:
+            {
+                addWomen: function () {
+                    axios.post('/api/women', {women: this.women}).then(function (response) {
+                        alert(response.data.message)
+                    })
+
+                }
+            }
+    })
+</script>
+
+</html>
