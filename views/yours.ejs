@@ -6,14 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-    >
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
     <title>input</title>
+    <style>
+        h1,h5{color: white}
+    </style>
 </head>
-<body>
+<body  background="http://personal.us.es/alejandroescudero/wp-content/uploads/2017/12/cropped-pexels-photo-724712.jpeg" style="background-repeat: no-repeat">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">IRAQI WOMEN</a>
+    <a class="navbar-brand" href="/first">IRAQI WOMEN</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -22,6 +24,9 @@
         <ul class="navbar-nav mr-auto">
             <li class="nav-item ">
                 <a class="nav-link " href="/first">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/about">About us</a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="/2nd">Developing</a>
@@ -33,10 +38,6 @@
                 <a class="nav-link" href="/crs">Education</a>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
     </div>
 </nav>
 <div class="container-fluid" id="root">
@@ -50,24 +51,26 @@
             <a href="/2nd" class="list-group-item list-group-item-action list-group-item-primary ">Iraqi Al-Amal
                 Association</a>
             <a href="/zz" class="list-group-item list-group-item-action list-group-item-primary ">Zainab Salbi</a>
-            <a href="/yours" class="list-group-item list-group-item-action list-group-item-primary active">Your contribution</a>
+            <a href="/yours" class="list-group-item list-group-item-action list-group-item-primary active">Your
+                contribution</a>
         </div>
         <div class="col-md-6">
-            <h1 class="z mt-5">Your story</h1>
+            <h1 class="z mt-5">Your contribution</h1>
             <br>
-            <p>The main reason for creating this page was to help iraqi women as much as we can and with all means,
+            <h5>The main reason for creating this page was to help iraqi women as much as we can and with all means,
                 their human rights, their social lives and their education.
                 As we get a wonderful support from many Associations, we are truly hopeful that can increase the Iraqi
                 women chances by having new ideas and contributes from people for women rights improvement by their
-                suggestions for having a better life for the woman , and so , a better society..</p>
+                suggestions for having a better life for the woman , and so , a better society..</h5>
             <br>
-            <p> please share us your suggestion.</p>
+            <h5> please share us your contribution:</h5>
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-primary mt-1" data-toggle="modal" data-target="#inputModal">
                 Suggest Here..
             </button>
             <br>
-            <p> To see others contributes pleas visit </p>
+            <br>
+            <h5> To see others contributes pleas visit <a href="/3rd">Studies</a></h5>
 
             <!-- Modal -->
             <div class="modal fade" id="inputModal" tabindex="-1" role="dialog"
@@ -101,8 +104,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button @click="addWomen()" type="submit" class="btn btn-primary">Save</button>
+                            <button @click="addWomen()" type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </div>
                 </div>
@@ -110,6 +112,26 @@
         </div>
     </div>
 </div>
+<br><br><br>
+<hr>
+<ul class="nav">
+    <li class="nav-item">
+        <a class="nav-link " href="/about">About</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="https://github.com/Raniask">Github</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/crs"> Courses</a>
+    </li>
+</ul>
+<br>
+<ul class="nav">
+    <li class="nav-item">
+        <h5>If are interested in sending us your suggestion or a solution for an issue, please visit <a
+                    href="/yours">Contribution</a>.</h5>
+    </li>
+</ul>
 
 </div>
 </body>
@@ -137,12 +159,23 @@
             {
                 addWomen: function () {
                     axios.post('/api/women', {women: this.women}).then(function (response) {
-                        alert(response.data.message)
-                    })
+                        alert(response.data)
+                        // try to prevent adding empty fields:
+                        // if (app.women.name !===" ") {
+                        //     addWomen.disabled = true
+                        // } else if (app.women.name === "") {
+                        //     addButton.disabled = false
+                        //     console.log("hh")
+                        // }
 
+
+                    })
+                    window.location.reload()
                 }
+
             }
     })
 </script>
-
+<!--if(app.women.name ===!""){addWomen.disabled = false()}else(app.women.name === ""){-->
+<!--addButton.disabled = ture;-->
 </html>

@@ -30,17 +30,24 @@ router.get('/2nd', function(req, res) {
 router.get('/3rd', function(req, res) {
     res.render('page3');
 });
-router.get('/4th', function(req, res) {
-    res.render('page4');
-});
-router.get('/5th', function(req, res) {
-    res.render('page5');
+router.get('/about', function(req, res) {
+    res.render('about');
 });
 router.get('/yours', function(req, res) {
     res.render('yours');
 });
 router.get('/crs', function(req, res) {
     res.render('crs');
+});
+router.get('/cover', function(req, res) {
+    res.render('cover');
+});
+router.get('/api/women', function (req, res) {
+
+    Women.find(function (error,womens) {
+        res.json(womens);
+    })
+
 });
 router.post('/api/women', function (req,res) {
     var newWomen = req.param('women');
@@ -64,5 +71,20 @@ router.get('/api/women', function (req, res) {
         res.json(Womens);
     });
 });
+router.put('/api/women',function (req,res) {
+    var editing = req.param('women');
+    Women.findByIdAndUpdate(editing._id,editing).then(function () {
+        res.json({
+            isSuccess: true,
+            message: "Suggestion Updated!"
+        });
+    }).catch(function (error) {
+        res.json({
+            isSuccess: false,
+            message: error.message
+        });
+    });
 
+
+});
 module.exports = router;

@@ -9,11 +9,12 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <title>progress</title>
 </head>
-<body class="body bg-light">
+<!--class="body bg-light"-->
+<body  background="https://i.pinimg.com/originals/07/cb/74/07cb74f7436452e32b54ae963d80a33c.jpg">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">IRAQI WOMEN</a>
+    <a class="navbar-brand" href="/first">IRAQI WOMEN</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -22,6 +23,9 @@
         <ul class="navbar-nav mr-auto">
             <li class="nav-item ">
                 <a class="nav-link " href="/first">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/about">About us</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/2nd">Developing</a>
@@ -33,10 +37,6 @@
                 <a class="nav-link" href="/crs">Education</a>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
     </div>
 </nav>
 <div class="container" id="root">
@@ -57,17 +57,20 @@
                         <tr v-for="(item,index) in Womens">
                             <td>{{index+1}}</td>
                             <td style="word-break:break-all">{{item.Name}}</td>
-                            <td>{{item.Problem}}</td>
-                            <td>{{item.Solution}}</td>
+                            <td style="word-break:break-all">{{item.Problem}}</td>
+                            <td style="word-break:break-all">{{item.Solution}}</td>
                             <td>
                                 <button @click="removeWomen(item._id)" class="btn btn-danger btn-sm"> delete</button>
+                                <button  @click="openEditModal(item)" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#editModal"> Edit</button>
                             </td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
-            <p>Do you want to suggest, please visit</p> <a class="nav-link" href="/3rd">Developing</a>
+            <br>
+            <p>Do you want to send a suggestion?
+                please visit : <a href="/yours">Your contribution</a></p>
         </div>
         <div class="col-md-6 ">
                 <div id="carouselExampleControls" class="carousel slide mt-5" data-ride="carousel">
@@ -111,6 +114,64 @@
                 <div class="progress-bar progress-bar-striped bg-danger progress-bar-animated" role="progressbar" style="width: 40%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Women's paid courses 40%</div>
             </div>
         </div>
+        <br>
+    </div>
+</div>
+<br>
+<hr>
+<ul class="nav">
+    <li class="nav-item">
+        <a class="nav-link " href="/about">About</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="https://github.com/Raniask">Github</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/crs"> Courses</a>
+    </li>
+</ul>
+<br>
+<ul class="nav">
+    <li class="nav-item">
+        <p>If are interested in sending us your suggestion or a solution for an issue, please visit <a
+                    href="/yours">Contribution</a>.</p>
+    </li>
+</ul>
+<!--update-->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle"> Edit Suggestion</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group" style="margin-top: 50px">
+                    <label for="exampleInputEmail1">Your Name</label>
+                    <input v-model="editSuggestion.Name" type="text" class="form-control" id="exampleInputEmail1"
+                           aria-describedby="emailHelp">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Problem </label>
+                        <input v-model="editSuggestion.Problem" type="text" class="form-control"
+                               id="exampleInputEmail1"
+                               aria-describedby="emailHelp">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Solution</label>
+                        <input v-model="editSuggestion.Solution" type="text" class="form-control"
+                               id="exampleInputEmail1"
+                               aria-describedby="emailHelp">
+                        <div class="form-group"/>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button @click="editSuggestion" type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </div>
     </div>
 </div>
     <!-- Optional JavaScript -->
@@ -126,9 +187,50 @@
     var app = new Vue({
         el: "#root",
         data: {
-            Womens: []
+            Womens:[],
+            newWomen:{
+                Name: "",
+                Problem: "",
+                Solution: ""
+            },
+            editSuggestion:{
+                Name: "",
+                Problem: "",
+                Solution: ""
+            }
         },
         methods: {
+            // openInputModal: function () {
+            //     $('#inputModal').modal('show')
+            //
+            // },
+            openEditModal: function (cartoon) {
+                this.editSuggestion = cartoon
+                $('#editModal').modal('show')
+
+            },
+            // addWomen: function () {
+            //     axios.post('/api/cartoons', {women: this.newWomen}).then(function (response) {
+            //
+            //         if (response.data.isSuccess) {
+            //             getWomens()
+            //             $('#inputModal').modal('hide')
+            //         }
+            //
+            //     }).catch(function (error) {
+            //         console.log("Error")
+            //
+            //     })
+            // },
+            editSuggestion: function () {
+                axios.put('/api/women', {women: this.editSuggestion}).then(function (response) {
+                    if (response.data.isSuccess) {
+                        $('#editModal').modal('hide');
+                        getWomens();
+                    }
+                })
+                window.location.reload()
+            },
 
             removeWomen: function (id) {
                 console.log(id)
@@ -137,7 +239,9 @@
                         params: {id: id}
 
                     })
+                window.location.reload()
             }
+
         },
 
         mounted: function () {
@@ -147,6 +251,7 @@
                 app.Womens = response.data;
 
             })
+            getWomens()
         }
     })
 </script>
